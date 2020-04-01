@@ -3,22 +3,38 @@ crud for SDC
 
 **Show Property summary**
 ----
-Return basic house information and contact information to relative agencies
+Return the targeted house and the neightborhood it is in
 
-* **URL** /house/:id/info
+* **URL** /api/houses
 
 * **Method:** `GET`
   
 *  **URL Params**
 
-   **Required:** `id=[integer]`
+   **Required:** `none`
 
-* **Data Params** `None`
+* **Data Params** 
+  - if nothing is provided simply return an array of all the houses
+  - if { name: <neightborhood name> }
+    - will give an array of house objects in the neighborhood
+  - if { houseId: <int> }
+    - some thing to do with heart??
+  
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ id : integer }`
+    **Content:** `{
+        "id": int,
+        "neighborhood": string,
+        "home_cost": int,
+        "bedrooms": int,
+        "bathrooms": int,
+        "home_address": string,
+        "sf": int,
+        "home_image": .jpg file,
+        "heart_filled": 1 || 0
+    }`
  
 * **Error Response:**
 
@@ -31,9 +47,48 @@ Return basic house information and contact information to relative agencies
     **Content:** `{ error : "House doesn't exist" }`
 
 * **Sample Call:**
-   `axios.get('/house/1')`
+   `axios.get('/')`
   
+**Get neighborhood**
+----
+Return the neighborhood the property is located in
 
+* **URL** /api/neighborhoods
+
+* **Method:** `GET`
+  
+*  **URL Params**
+
+   **Required:** `name=[string]`
+
+* **Data Params** `name: <neighborhood name>`
+
+* **Success Response:**
+ 
+  * **Code:** 200 <br />
+    **Content:** `{
+        "id": int,
+        "neighborhood": string,
+        "transit_score": int,
+        "walk_score": int,
+        "value_inc_dec_past": int,
+        "value_inc_dec_future": int,
+        "median_value": int
+    }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "neighborhood doesn't exist" }`
+
+* **Sample Call:**
+   `axios.get('/api/neighborhoods?name=The Mission')`
+   
 **Save a new property information**
 ----
 Save the new property info posted by user
@@ -104,7 +159,7 @@ Saved changes by user.
 ----
 Delete all the information about the property
 
-* **URL** /house/:id/
+* **URL** /api/
 
 * **Method:** `DELETE`
   
