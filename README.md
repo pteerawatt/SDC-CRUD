@@ -21,15 +21,15 @@ Return all the houses in the database
  
   * **Code:** 200 <br />
     **Content:** an array of house objects: `[{
-        "id": int,
-        "neighborhood": string,
-        "home_cost": int,
-        "bedrooms": int,
-        "bathrooms": int,
-        "home_address": string,
-        "sf": int,
-        "home_image": .jpg file,
-        "heart_filled": 1 || 0
+        `"id": int,`
+        `"neighborhood": string,`
+        `"home_cost": int,`
+        `"bedrooms": int,`
+        `"bathrooms": int,`
+        `"home_address": string,`
+        `"sf": int,`
+        `"home_image": .jpg file,`
+        `"heart_filled": 1 || 0`
     }. . .]`
  
 * **Error Response:**
@@ -59,22 +59,22 @@ Return all the houses in the neighborhood
 
 * **Data Params** 
 
-  { name: <neightborhood name> }
+  `{ name: <neightborhood name> }`
   
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** an array of house objects: `[{
-        "id": int,
-        "neighborhood": string,
-        "home_cost": int,
-        "bedrooms": int,
-        "bathrooms": int,
-        "home_address": string,
-        "sf": int,
-        "home_image": .jpg file,
-        "heart_filled": 1 || 0
-    }. . .]`
+    **Content:** an array of house objects: `[{`
+        `"id": int,`
+        `"neighborhood": string,`
+        `"home_cost": int,`
+        `"bedrooms": int,`
+        `"bathrooms": int,`
+        `"home_address": string,`
+        `"sf": int,`
+        `"home_image": .jpg file,`
+        `"heart_filled": 1 || 0`
+    `}. . .]`
  
 * **Error Response:**
 
@@ -103,22 +103,15 @@ Return the liked status of all the homes
 
 * **Data Params** 
 
-  - { houseId: <int> }
+  `{ houseId: <int> }`
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** an array of house objects: `[{
-        "id": int,
-        "neighborhood": string,
-        "home_cost": int,
-        "bedrooms": int,
-        "bathrooms": int,
-        "home_address": string,
-        "sf": int,
-        "home_image": .jpg file,
-        "heart_filled": 1 || 0
-    }. . .]`
+    **Content:** an array of house objects: `[{`
+    
+        `"heart_filled": 1 || 0`
+    `}. . .]`
  
 * **Error Response:**
 
@@ -133,9 +126,9 @@ Return the liked status of all the homes
 * **Sample Call:**
    `axios.get('/')`
    
-**Get neighborhood**
+**Get the neighborhood**
 ----
-Returns one home object
+Returns information on the neighborhood
 
 * **URL** /api/neighborhoods
 
@@ -151,13 +144,13 @@ Returns one home object
  
   * **Code:** 200 <br />
     **Content:** `{
-        "id": int,
-        "neighborhood": string,
-        "transit_score": int,
-        "walk_score": int,
-        "value_inc_dec_past": int,
-        "value_inc_dec_future": int,
-        "median_value": int
+        `"id": int,`
+        `"neighborhood": string,`
+        `"transit_score": int,`
+        `"walk_score": int,`
+        `"value_inc_dec_past": int,`
+        `"value_inc_dec_future": int,`
+        `"median_value": int`
     }`
  
 * **Error Response:**
