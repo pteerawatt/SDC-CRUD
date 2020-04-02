@@ -18,7 +18,7 @@ Return the targeted house and the neightborhood it is in
   - if { name: <neightborhood name> }
     - will give an array of house objects in the neighborhood
   - if { houseId: <int> }
-    - some thing to do with heart??
+    - retruns state of heart (liked)
   
 
 * **Success Response:**
@@ -51,7 +51,7 @@ Return the targeted house and the neightborhood it is in
   
 **Get neighborhood**
 ----
-Return the neighborhood the property is located in
+Returns one home object
 
 * **URL** /api/neighborhoods
 
@@ -89,11 +89,11 @@ Return the neighborhood the property is located in
 * **Sample Call:**
    `axios.get('/api/neighborhoods?name=The Mission')`
    
-**Save a new property information**
+**Post Comments**
 ----
-Save the new property info posted by user
+Post a comment
 
-* **URL** /house/:id/
+* **URL** /api/house?
 
 * **Method:** `POST`
   
@@ -101,45 +101,40 @@ Save the new property info posted by user
 
    **Required:** `id = [integer]`
 
-* **Data Params** `{id:interger, info:...}`
+* **Data Params** `{id:interger, comment:...}`
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ success: 'Successfully posted a new property!' }`
+    **Content:** `{ success: 'Successfully posted a comment!' }`
  
 * **Error Response:**
 
   * **Code:** 404 UNAUTHORIZED <br />
     **Content:** `{ error : "You are unauthorized to make this request" }`
 
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "it has been posted" }`
-
 * **Sample Call:**
    `axios.post('/house/1/')`
    
 
-**Update info for the Property**
+**Update liked status**
 ----
 Saved changes by user. 
 
-* **URL** /house/:id/
+* **URL** /api/houses
 
 * **Method:** `PUT`
   
 *  **URL Params**
 
-   **Required:** `id = [integer]`
+   **Required:** `houseId = [integer]`
 
-* **Data Params** ` {email: [string], password: [string], id:[string], saved: [boolean]}`
+* **Data Params** `{houseId: id}`
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ success : 'Successfully saved the changes you made}`
+    **Content:** `{ success : 'Successfully liked}`
  
 * **Error Response:**
 
@@ -152,14 +147,14 @@ Saved changes by user.
     **Content:** `{ error : "Property doesn't exist" }`
 
 * **Sample Call:**
-   `axios.put('/house/1/')`
+   `axios.put('/houses/1/')`
    
 
-**Delete Property info**
+**Delete comment**
 ----
-Delete all the information about the property
+Delete a comment
 
-* **URL** /api/
+* **URL** /api/house?
 
 * **Method:** `DELETE`
   
@@ -172,7 +167,7 @@ Delete all the information about the property
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ success : 'Successfully deleted the property information' }`
+    **Content:** `{ success : 'Successfully deleted the comment' }`
  
 * **Error Response:**
 
@@ -182,7 +177,7 @@ Delete all the information about the property
   OR
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "House doesn't exist" }`
+    **Content:** `{ error : "comment doesn't exist" }`
 
 * **Sample Call:**
    `axios.delete('/house/1/')`
