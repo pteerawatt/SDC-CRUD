@@ -141,15 +141,15 @@ Returns information on the neighborhood
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{
-        `"id": int,`
-        `"neighborhood": string,`
-        `"transit_score": int,`
-        `"walk_score": int,`
-        `"value_inc_dec_past": int,`
-        `"value_inc_dec_future": int,`
-        `"median_value": int`
-    }`
+    **Content:** {
+        "id": int,
+        "neighborhood": string,
+        "transit_score": int,
+        "walk_score": int,
+        "value_inc_dec_past": int,
+        "value_inc_dec_future": int,
+        "median_value": int
+    }
  
 * **Error Response:**
 
