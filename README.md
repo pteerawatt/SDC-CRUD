@@ -1,9 +1,9 @@
 # SDC-CRUD
 crud for SDC
 
-**Show Property summary**
+**Get all the houses**
 ----
-Return the targeted house and the neightborhood it is in
+Return all the houses in the database
 
 * **URL** /api/houses
 
@@ -14,17 +14,13 @@ Return the targeted house and the neightborhood it is in
    **Required:** `none`
 
 * **Data Params** 
-  - if nothing is provided simply return an array of all the houses
-  - if { name: <neightborhood name> }
-    - will give an array of house objects in the neighborhood
-  - if { houseId: <int> }
-    - retruns state of heart (liked)
+  - none
   
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{
+    **Content:** an array of house objects: `[{
         "id": int,
         "neighborhood": string,
         "home_cost": int,
@@ -34,21 +30,109 @@ Return the targeted house and the neightborhood it is in
         "sf": int,
         "home_image": .jpg file,
         "heart_filled": 1 || 0
-    }`
+    }. . .]`
  
 * **Error Response:**
 
   * **Code:** 404 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+    **Content:** `{ error : "Please Log in" }`
 
   OR
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "House doesn't exist" }`
+    **Content:** `{ error : "No houses are found" }`
 
 * **Sample Call:**
    `axios.get('/')`
   
+**Get all the houses in the neighborhood**
+----
+Return all the houses in the neighborhood
+
+* **URL** /api/houses
+
+* **Method:** `GET`
+  
+*  **URL Params**
+
+   **Required:** `none`
+
+* **Data Params** 
+
+  { name: <neightborhood name> }
+  
+* **Success Response:**
+ 
+  * **Code:** 200 <br />
+    **Content:** an array of house objects: `[{
+        "id": int,
+        "neighborhood": string,
+        "home_cost": int,
+        "bedrooms": int,
+        "bathrooms": int,
+        "home_address": string,
+        "sf": int,
+        "home_image": .jpg file,
+        "heart_filled": 1 || 0
+    }. . .]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 UNAUTHORIZED <br />
+    **Content:** `{ error : "Please Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "No houses in this neighborhood" }`
+
+* **Sample Call:**
+   `axios.get('/')`
+   
+**Get like status**
+----
+Return the liked status of all the homes
+
+* **URL** /api/houses
+
+* **Method:** `GET`
+  
+*  **URL Params** 
+
+   **Required:** `none`
+
+* **Data Params** 
+
+  - { houseId: <int> }
+
+* **Success Response:**
+ 
+  * **Code:** 200 <br />
+    **Content:** an array of house objects: `[{
+        "id": int,
+        "neighborhood": string,
+        "home_cost": int,
+        "bedrooms": int,
+        "bathrooms": int,
+        "home_address": string,
+        "sf": int,
+        "home_image": .jpg file,
+        "heart_filled": 1 || 0
+    }. . .]`
+ 
+* **Error Response:**
+
+  * **Code:** 404 UNAUTHORIZED <br />
+    **Content:** `{ error : "Please Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "No houses are found" }`
+
+* **Sample Call:**
+   `axios.get('/')`
+   
 **Get neighborhood**
 ----
 Returns one home object
@@ -91,9 +175,9 @@ Returns one home object
    
 **Post Comments**
 ----
-Post a comment
+Post a comment on a house
 
-* **URL** /api/house?
+* **URL** /api/house/comment
 
 * **Method:** `POST`
   
@@ -101,7 +185,7 @@ Post a comment
 
    **Required:** `id = [integer]`
 
-* **Data Params** `{id:interger, comment:...}`
+* **Data Params** `{id: <interger>, comment: <string>}`
 
 * **Success Response:**
  
@@ -114,8 +198,39 @@ Post a comment
     **Content:** `{ error : "You are unauthorized to make this request" }`
 
 * **Sample Call:**
-   `axios.post('/house/1/')`
+   `axios.post('/house/comment/1')`
    
+**Delete comment**
+----
+Delete a comment on the house
+
+* **URL** /api/house/comment
+
+* **Method:** `DELETE`
+  
+*  **URL Params**
+
+   **Required:** `id = [integer]`
+
+* **Data Params** `NONE`
+
+* **Success Response:**
+ 
+  * **Code:** 200 <br />
+    **Content:** `{ success : 'Successfully deleted the comment' }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 UNAUTHORIZED <br />
+    **Content:** `{ error : "You are unauthorized to make this request." }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "comment doesn't exist" }`
+
+* **Sample Call:**
+   `axios.delete('/house/comment/1')`
 
 **Update liked status**
 ----
@@ -150,34 +265,4 @@ Saved changes by user.
    `axios.put('/houses/1/')`
    
 
-**Delete comment**
-----
-Delete a comment
 
-* **URL** /api/house?
-
-* **Method:** `DELETE`
-  
-*  **URL Params**
-
-   **Required:** `id = [integer]`
-
-* **Data Params** `NONE`
-
-* **Success Response:**
- 
-  * **Code:** 200 <br />
-    **Content:** `{ success : 'Successfully deleted the comment' }`
- 
-* **Error Response:**
-
-  * **Code:** 404 UNAUTHORIZED <br />
-    **Content:** `{ error : "You are unauthorized to make this request." }`
-
-  OR
-
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "comment doesn't exist" }`
-
-* **Sample Call:**
-   `axios.delete('/house/1/')`
