@@ -128,7 +128,7 @@ Return the liked status of a home
 ----
 Returns information on the neighborhood
 
-* **URL** /api/neighborhoods/`neighborhoodId`
+* **URL** /api/neighborhoods
 
 * **Method:** `GET`
   
@@ -162,7 +162,7 @@ Returns information on the neighborhood
     **Content:** `{ error : "neighborhood doesn't exist" }`
 
 * **Sample Call:**
-   `axios.get('/api/neighborhoods/1')`
+   `axios.get('/api/neighborhoods')`
    
 **Create a new House**
 ----
