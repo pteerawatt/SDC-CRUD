@@ -1,11 +1,11 @@
 # SDC-CRUD
 crud for SDC
 
-**Get all the houses**
+**Get targethouse houses**
 ----
-Return all the houses in the database
+Return information bout the target house
 
-* **URL** /api/houses
+* **URL** /api/houses/`houseId`
 
 * **Method:** `GET`
   
@@ -44,13 +44,13 @@ Return all the houses in the database
     **Content:** `{ error : "No houses are found" }`
 
 * **Sample Call:**
-   `axios.get('/')`
+   `axios.get('/api/houses/1')`
   
 **Get all the houses in the neighborhood**
 ----
 Return all the houses in the neighborhood
 
-* **URL** /api/houses
+* **URL** /api/houses/`houseId`/neighborhood
 
 * **Method:** `GET`
   
@@ -88,13 +88,13 @@ Return all the houses in the neighborhood
     **Content:** `{ error : "No houses in this neighborhood" }`
 
 * **Sample Call:**
-   `axios.get('/')`
+   `axios.get('/api/houses/1/neighborhood')`
    
 **Get like status**
 ----
-Return the liked status of all the homes
+Return the liked status of a home
 
-* **URL** /api/houses
+* **URL** /api/houses/`houseId`/likes
 
 * **Method:** `GET`
   
@@ -122,19 +122,19 @@ Return the liked status of all the homes
     **Content:** `{ error : "No houses are found" }`
 
 * **Sample Call:**
-   `axios.get('/')`
+   `axios.get('/api/houses/1/likes')`
    
 **Get the neighborhood**
 ----
 Returns information on the neighborhood
 
-* **URL** /api/neighborhoods
+* **URL** /api/neighborhoods/`neighborhoodId`
 
 * **Method:** `GET`
   
 *  **URL Params**
 
-   **Required:** `name=[string]`
+   **Required:** ``
 
 * **Data Params** `name: <neighborhood name>`
 
@@ -162,26 +162,26 @@ Returns information on the neighborhood
     **Content:** `{ error : "neighborhood doesn't exist" }`
 
 * **Sample Call:**
-   `axios.get('/api/neighborhoods?name=The Mission')`
+   `axios.get('/api/neighborhoods/1')`
    
-**Post Comments**
+**Create a new House**
 ----
-Post a comment on a house
+Create a new house
 
-* **URL** /api/house/comment
+* **URL** /api/houses/create
 
 * **Method:** `POST`
   
 *  **URL Params**
 
-   **Required:** `id = [integer]`
+   **Required:** ``
 
-* **Data Params** `{id: <interger>, comment: <string>}`
+* **Data Params** all the params from the house object
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ success: 'Successfully posted a comment!' }`
+    **Content:** `{ success: 'Successfully listed a new hoe' }`
  
 * **Error Response:**
 
@@ -189,13 +189,13 @@ Post a comment on a house
     **Content:** `{ error : "You are unauthorized to make this request" }`
 
 * **Sample Call:**
-   `axios.post('/house/comment/1')`
+   `axios.post('/api/houses/create')`
    
-**Delete comment**
+**Delete a home**
 ----
-Delete a comment on the house
+Delete a home
 
-* **URL** /api/house/comment
+* **URL** /api/houses/delete/`houseId`
 
 * **Method:** `DELETE`
   
@@ -203,12 +203,12 @@ Delete a comment on the house
 
    **Required:** `id = [integer]`
 
-* **Data Params** `NONE`
+* **Data Params** `{ houseId: int }`
 
 * **Success Response:**
  
   * **Code:** 200 <br />
-    **Content:** `{ success : 'Successfully deleted the comment' }`
+    **Content:** `{ success : 'Successfully deleted the house' }`
  
 * **Error Response:**
 
@@ -218,24 +218,24 @@ Delete a comment on the house
   OR
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "comment doesn't exist" }`
+    **Content:** `{ error : "house doesn't exist" }`
 
 * **Sample Call:**
-   `axios.delete('/house/comment/1')`
+   `axios.delete('/api/houses/delete/1')`
 
 **Update liked status**
 ----
-Saved changes by user. 
+update the like status of the house
 
-* **URL** /api/houses
+* **URL** /api/houses/`houseId`/likes
 
-* **Method:** `PUT`
+* **Method:** `PATCH`
   
 *  **URL Params**
 
    **Required:** `houseId = [integer]`
 
-* **Data Params** `{houseId: id}`
+* **Data Params** `{houseId: int}`
 
 * **Success Response:**
  
@@ -253,7 +253,7 @@ Saved changes by user.
     **Content:** `{ error : "Property doesn't exist" }`
 
 * **Sample Call:**
-   `axios.put('/houses/1/')`
+   `axios.put('/api/houses/1/likes')`
    
 
 
